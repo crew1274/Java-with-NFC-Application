@@ -4,20 +4,20 @@ import java.sql.*;
 import gnu.io.*;
 import java.io.*;
 public class JDBC {
-	private static  String ip="140.116.39.225";
-	private static String dbname ="NFC";
-	private static String account="nfc_user";
-	private static String password="50150";
+	private static  String ip="";
+	private static String dbname ="";
+	private static String account="";
+	private static String password="";
 	public static String[][] the_new=new String[30][20];;
   private Connection con = null; //Database objects
-  //³s±µobject
+  //é€£æ¥object
   private Statement stat = null;
-  //°õ¦æ,¶Ç¤J¤§sql¬°§¹¾ã¦r¦ê
+  //åŸ·è¡Œ,å‚³å…¥ä¹‹sqlç‚ºå®Œæ•´å­—ä¸²
   private ResultSet rs = null;
-  //µ²ªG¶°
+  //çµæœé›†
   private PreparedStatement pst = null;
-  //°õ¦æ,¶Ç¤J¤§sql¬°¹wÀx¤§¦r¥Ó,»İ­n¶Ç¤JÅÜ¼Æ¤§¦ì¸m
-  //¥ı§Q¥Î?¨Ó°µ¼Ğ¥Ü
+  //åŸ·è¡Œ,å‚³å…¥ä¹‹sqlç‚ºé å„²ä¹‹å­—ç”³,éœ€è¦å‚³å…¥è®Šæ•¸ä¹‹ä½ç½®
+  //å…ˆåˆ©ç”¨?ä¾†åšæ¨™ç¤º
   private String dropdbSQL = "checkout";
   private String selectSQL = "select * from checkout ";
   /*private static String createdbSQL = "CREATE TABLE nfc.checkout("+"serial VARCHAR(7)"+",year INTEGER"+",month INTEGER"+",day INTEGER"+",hr INTEGER"+
@@ -36,14 +36,14 @@ public class JDBC {
       con = DriverManager.getConnection("jdbc:mysql://"+ip+":3306/"+dbname,account,password);}
     catch(ClassNotFoundException e)
     {System.out.println("DriverClassNotFound :"+e.toString());
-     return false;}//¦³¥i¯à·|²£¥Ísqlexception
+     return false;}//æœ‰å¯èƒ½æœƒç”¢ç”Ÿsqlexception
     catch(SQLException x) {System.out.println("Exception :"+x.toString());
       return false;}
     System.out.println("Successful connect database!");
 	return true;
   }
-  //«Ø¥ßtableªº¤è¦¡
-  //¥i¥H¬İ¬İStatementªº¨Ï¥Î¤è¦¡
+  //å»ºç«‹tableçš„æ–¹å¼
+  //å¯ä»¥çœ‹çœ‹Statementçš„ä½¿ç”¨æ–¹å¼
   public void createTable(String c)
   {
     try
@@ -54,8 +54,8 @@ public class JDBC {
     finally
     {close();}
   }
-  //·s¼W¸ê®Æ
-  //¥i¥H¬İ¬İPrepareStatementªº¨Ï¥Î¤è¦¡
+  //æ–°å¢è³‡æ–™
+  //å¯ä»¥çœ‹çœ‹PrepareStatementçš„ä½¿ç”¨æ–¹å¼
   // private String insertdbSQL = "insert into User(id,day,passwd) "
 	      // "select ifNULL(max(id),0)+1,?,? FROM User";
   public void insertTable(String uid,String stage , String time)
@@ -99,8 +99,8 @@ public class JDBC {
       close();
     }
   }
-  //¬d¸ß¸ê®Æ
-  //¥i¥H¬İ¬İ¦^¶Çµ²ªG¶°¤Î¨ú±o¸ê®Æ¤è¦¡
+  //æŸ¥è©¢è³‡æ–™
+  //å¯ä»¥çœ‹çœ‹å›å‚³çµæœé›†åŠå–å¾—è³‡æ–™æ–¹å¼
 
   public String SelectTable(String  uid)
   {
@@ -176,8 +176,8 @@ public class JDBC {
       close();
     }
   }
-  //§¹¾ã¨Ï¥Î§¹¸ê®Æ®w«á,°O±o­nÃö³¬©Ò¦³Object
-  //§_«h¦bµ¥«İTimeout®É,¥i¯à·|¦³Connection poorªºª¬ªp
+  //å®Œæ•´ä½¿ç”¨å®Œè³‡æ–™åº«å¾Œ,è¨˜å¾—è¦é—œé–‰æ‰€æœ‰Object
+  //å¦å‰‡åœ¨ç­‰å¾…Timeoutæ™‚,å¯èƒ½æœƒæœ‰Connection poorçš„ç‹€æ³
   public void close()
   {
     try
@@ -208,7 +208,7 @@ public class JDBC {
 
   public static void main(String[] args)
   {
-    //´ú¬İ¬İ¬O§_¥¿±`
+    //æ¸¬çœ‹çœ‹æ˜¯å¦æ­£å¸¸
     JDBC test = new JDBC();
     if(test.connect(ip,dbname,account,password))
     {System.out.println("connect database!");}
